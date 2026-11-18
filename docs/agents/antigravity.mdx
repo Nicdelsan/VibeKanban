@@ -1,0 +1,36 @@
+---
+title: "Antigravity"
+description: "Set up the Antigravity CLI (agy)"
+icon: "rocket"
+---
+
+Vibe Kanban runs Antigravity through `agy acp`, the CLI's Agent Client Protocol server. The `agy` binary must be on your `PATH`.
+
+<Steps>
+<Step title="Install and log in">
+  Install the Antigravity CLI, then run it once and complete the login flow:
+
+  ```bash
+  agy
+  ```
+
+  Vibe Kanban marks Antigravity as available once `agy` is on `PATH` and the CLI has been set up (`~/.gemini/antigravity-cli/installation_id` exists).
+</Step>
+
+<Step title="Pick a profile">
+  The `ANTIGRAVITY` agent ships with these variants:
+
+  | Variant | Behaviour |
+  |---------|-----------|
+  | `DEFAULT` | Runs with `--dangerously-skip-permissions` (no approval prompts) |
+  | `APPROVALS` | Asks for approval in Vibe Kanban before tool calls |
+  | `PLAN` | Plan mode, no edits |
+  | `CLAUDE_OPUS` / `CLAUDE_SONNET` | Same as default, with a Claude model selected via ACP |
+
+  Profile options: `model`, `mode` (`default`, `accept-edits`, `auto`, `plan`), `yolo`, `sandbox` (adds `--sandbox`), `append_prompt` and the usual command overrides.
+</Step>
+
+<Step title="MCP servers">
+  Antigravity reads MCP servers from `~/.gemini/config/mcp_config.json`, which Vibe Kanban edits from the MCP settings page.
+</Step>
+</Steps>

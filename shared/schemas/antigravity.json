@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "append_prompt": {
+      "title": "Append Prompt",
+      "description": "Extra text appended to the prompt",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "textarea",
+      "default": null
+    },
+    "model": {
+      "title": "Model",
+      "description": "Model id as listed by `agy models` (e.g. gemini-4-argon-medium, claude-sonnet-5-5-medium)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mode": {
+      "title": "Mode",
+      "description": "Agent execution mode",
+      "anyOf": [
+        {
+          "description": "Antigravity session mode, applied through ACP `session/set_mode`.",
+          "oneOf": [
+            {
+              "description": "Ask before edits and commands",
+              "type": "string",
+              "const": "default"
+            },
+            {
+              "description": "Approve file edits in the workspace without asking",
+              "type": "string",
+              "const": "accept-edits"
+            },
+            {
+              "description": "Approve edits and safe commands; ask before irreversible actions",
+              "type": "string",
+              "const": "auto"
+            },
+            {
+              "description": "Plan carefully before executing a task",
+              "type": "string",
+              "const": "plan"
+            }
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "yolo": {
+      "title": "Skip Permissions",
+      "description": "Auto-approve all tool permission requests (--dangerously-skip-permissions)",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "sandbox": {
+      "title": "Sandbox",
+      "description": "Run with terminal restrictions enabled (--sandbox)",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "base_command_override": {
+      "title": "Base Command Override",
+      "description": "Override the base command with a custom command",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "additional_params": {
+      "title": "Additional Parameters",
+      "description": "Additional parameters to append to the base command",
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "env": {
+      "title": "Environment Variables",
+      "description": "Environment variables to set when running the executor",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "description": "Google Antigravity CLI (`agy`), driven through its native ACP server (`agy acp`).",
+  "type": "object"
+}
